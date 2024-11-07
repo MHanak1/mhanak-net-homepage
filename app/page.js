@@ -17,26 +17,26 @@ export default async function Home() {
 
 	return (
 <div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center font-[family-name:var(--font-geist-sans)] ">
-	<div className="min-h-[800] dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
-		<div className="flex flex-row max-w-[2000] p-4 justify-between items-center mx-auto">
-			<div className="flex flex-row space-x-6 size-min">
+	<div className="min-h-[800px] dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
+		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto">
+			<div className="flex flex-row space-x-6 size-min self-end">
 				<ThemeChanger/>
 			</div>
-			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2 size-max">
+			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2">
 				<a href="/projects">
 					<button className="highlightable hover:text-accent small-button">
 						<TiCode/> <span className="mt-0"> Projects </span>
 					</button>
 				</a>	
 				<button className="highlightable hover:text-accent small-button group">
-					<TiImage/> <span className="mt-0"> Gallery </span> <BiChevronDown className="ml-[-4] animate-flip" />
-					<div className="dropdown self-start dark:text-white text-black border-gray-500 mt-12 ml-[-8]">
+					<TiImage/> <span className="mt-0"> Gallery </span> <BiChevronDown className="ml-[-4px] animate-flip" />
+					<div className="dropdown self-start dark:text-white text-black border-gray-500 mt-12 ml-[-8px]">
 						<a className="highlightable flex flex-row items-center gap-1 px-2 rounded-xl w-fit" href="/gallery"> <TiCamera/> Photos </a>
 						<a className="              flex flex-row items-center gap-1 px-2 rounded-xl w-fit text-gray-500"> <TiPencil/> Drawings </a>
 					</div>
 				</button>
 			</div>
-			<div className="flex flex-row-reverse space-x-6 size-min">
+			<div className="flex flex-row-reverse space-x-6 size-min ml-auto">
 				{<button className="dark:bg-white dark:text-black hover:bg-accent bg-black text-white small-button invisible">
 					Login
 				</button>}
@@ -85,9 +85,10 @@ function Tile (project) {
 			<Image
 				src={img_url ? img_url : '/noimg.png'}
 				width={500}
-				height={500}
+				height={250}
+				quality={95}
 				alt={description}
-				className="rounded-xl h-[250] w-max shadow-md shadow-gray-700 dark:shadow-black"
+				className="rounded-xl h-150 sm:h-[250px] w-max shadow-md shadow-gray-700 dark:shadow-black"
 			/>
 			<span className="font-bold mr-auto text-left">
 				{title}
