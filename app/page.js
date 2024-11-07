@@ -1,11 +1,20 @@
-'use client'
+import { TiImage, TiCamera, TiPencil, TiCode } from "react-icons/ti";
+import { BiChevronDown } from "react-icons/bi";
+import { useTheme } from 'next-themes'
+import { pocketbase_url, pb } from '../public/globals'
+import { ThemeChanger } from './UIComponents'
+import { Footer } from './PageComponents'
 
 import Image from "next/image";
-import { TiCamera, TiCode } from "react-icons/ti";
-import { BsMoonStarsFill, BsSunFill, BsGithub, BsMastodon, BsDiscord} from "react-icons/bs";
-import { useTheme } from 'next-themes'
+import PocketBase from 'pocketbase';
 
-export default function Home() {
+
+export default async function Home() {
+
+	const projects = await pb.collection('projects').getList(1, 10, {
+		sort: '-created,title',
+	});
+
 	return (
 <div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center font-[family-name:var(--font-geist-sans)] ">
 	<div className="min-h-[800] dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
@@ -14,17 +23,23 @@ export default function Home() {
 				<ThemeChanger/>
 			</div>
 			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2 size-max">
-				<button className="highlightable hover:text-accent small-button">
-					<TiCamera/> <span className="mt-0"> Gallery </span>
-				</button>
-				<button className="highlightable hover:text-accent small-button">
-					<TiCode/> <span className="mt-0"> Projects </span>
+				<a href="/projects">
+					<button className="highlightable hover:text-accent small-button">
+						<TiCode/> <span className="mt-0"> Projects </span>
+					</button>
+				</a>	
+				<button className="highlightable hover:text-accent small-button group">
+					<TiImage/> <span className="mt-0"> Gallery </span> <BiChevronDown className="ml-[-4] animate-flip" />
+					<div className="dropdown self-start dark:text-white text-black border-gray-500 mt-12 ml-[-8]">
+						<a className="highlightable flex flex-row items-center gap-1 px-2 rounded-xl w-fit" href="/gallery"> <TiCamera/> Photos </a>
+						<a className="              flex flex-row items-center gap-1 px-2 rounded-xl w-fit text-gray-500"> <TiPencil/> Drawings </a>
+					</div>
 				</button>
 			</div>
 			<div className="flex flex-row-reverse space-x-6 size-min">
-				<button className="dark:bg-white dark:text-black hover:bg-accent bg-black text-white small-button">
+				{<button className="dark:bg-white dark:text-black hover:bg-accent bg-black text-white small-button invisible">
 					Login
-				</button>
+				</button>}
 			</div>
 		</div>
 
@@ -36,7 +51,7 @@ export default function Home() {
 		</p>
 	</div>
 
-	<div className="flex flex-col items-start font-[family-name:var(--font-geist-mono)] pt-5 dark:text-gray-300 text-gray-800">
+	<div className="flex flex-col items-start font-[family-name:var(--font-geist-mono)] pt-5">
 
 		<span className="text-3xl ml-5 sm:ml-10">
 			Projects
@@ -44,61 +59,35 @@ export default function Home() {
 
 		
 		<div className="flex flex-row p-5 gap-5 w-x overflow-scroll">
-			{Tile ("/th.webp", "Hi!", "there's a dick on the wall")}
-			{Tile ("/th.webp", "1", "there's a dick on the wall")}
-			{Tile ("/th.webp", "Hi!", "there's a dick on the wall")}
-			{Tile ("/th.webp", "1", "there's a dick on the wall")}
-			{Tile ("/th.webp", "Hi!", "there's a dick on the wall")}
-			{Tile ("/th.webp", "1", "there's a dick on the wall")}
+			{
+			projects.items.map((project, index) =>{
+						return (Tile (project))
+					}
+				)
+
+			}
 		</div>
 
 	</div>
+	<Footer/>
 
-	<footer className="flex flex-row justify-between dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500 font-[family-name:var(--font-geist-mono)] p-6">
-		<div className="size-fit">
-			a
-		</div>
-		<div className="flex flex-col size-fit items-end mx-0 sm:mx-2">
-			<span className="text-3xl mb-2">
-				Socials
-			</span>
-			<div className="grid gap-2 grid-cols-2 justify-end">
-				<a 
-					className="highlightable rounded-full size-12 flex justify-center items-center
-					text-gray-700"
-					href='https://github.com/MHanak1'>
-					<BsGithub className="size-8"/>
-				</a>
-				<a 
-					className="highlightable rounded-full flex size-12 justify-center items-center
-					text-gray-700"
-					href='https://mastodon.social/@mhanak'>
-					<BsMastodon className="size-8"/>
-				</a>
-				
-				<div/>
-				<a 
-					className="highlightable rounded-full flex size-12 justify-center items-center
-					text-gray-700"
-					href='https://discordapp.com/users/765559340081872906'>
-					<BsDiscord className="size-8" />
-				</a>
-			</div>
-		</div>
-	</footer>
 </div>
   );
 }
 
-function Tile (image, title, text) {
+function Tile (project) {
+	const { id, title, description, image, created, updated } = project || {}
+	const img_url = pb.files.getUrl(project, image, {'thumb': '250x250'});
 	return (
-		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg shadow-gray-500 dark:shadow-black dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]">
+		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
+		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
+		key = {id}>
 			<Image
-				src={image}
-				width={250}
-				height={250}
-				alt={title}
-				className="rounded-xl h-[250] w-max"
+				src={img_url ? img_url : '/noimg.png'}
+				width={500}
+				height={500}
+				alt={description}
+				className="rounded-xl h-[250] w-max shadow-md shadow-gray-700 dark:shadow-black"
 			/>
 			<span className="font-bold mr-auto text-left">
 				{title}
@@ -108,15 +97,3 @@ function Tile (image, title, text) {
 }
 
 
-const ThemeChanger = () => {
-  const { theme, setTheme } = useTheme();
-
-  return (
-	<button onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}>
-	  <div className="highlightable rounded-full flex size-10 justify-center items-center ml-0  hover:text-yellow-500">
-		  <BsSunFill className="dark:hidden inline"/>
-		  <BsMoonStarsFill className="dark:inline hidden"/>
-	  </div>
-	</button>
-  )
-}
