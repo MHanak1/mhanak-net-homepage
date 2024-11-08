@@ -1,5 +1,5 @@
 import { TiImage, TiCamera, TiPencil, TiCode } from "react-icons/ti";
-import { BiChevronDown, BiSolidImageAlt } from "react-icons/bi";
+import { BiChevronDown, BiSolidImageAlt, BiLandscape } from "react-icons/bi";
 import { useTheme } from 'next-themes'
 import { pocketbase_url, pb } from '../public/globals'
 import { ThemeChanger } from './UIComponents'
@@ -7,6 +7,7 @@ import { Footer } from './PageComponents'
 
 import Image from "next/image";
 import PocketBase from 'pocketbase';
+import getBase64 from '@/lib/getLocalBase64'
 
 
 
@@ -18,11 +19,15 @@ export const dynamic = 'auto',
 export default async function Home() {
 
 	const projects = await pb.collection('projects').getList(1, 10, {
-		sort: '-created,title',
+		sort: '-created, title',
+	});
+
+	const albums = await pb.collection('albums').getList(1, 10, {
+		sort: '-date, title',
 	});
 
 	return (
-<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center font-[family-name:var(--font-geist-sans)] ">
+<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center font-[family-name:var(--font-geist-sans)]">
 	<div className="min-h-[800px] dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
 		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto">
 			<div className="flex flex-row space-x-6 size-min self-end">
@@ -59,15 +64,25 @@ export default async function Home() {
 
 	<div className="flex flex-col items-start font-[family-name:var(--font-geist-mono)] pt-5">
 
-		<span className="text-3xl ml-5 sm:ml-10">
+		<span className="text-3xl ml-5 sm:ml-10 mt-2">
 			Projects
 		</span>
-
-		
-		<div className="flex flex-row p-5 gap-5 w-x overflow-scroll">
+		<div className="flex flex-row p-5 gap-5 w-screen overflow-scroll">
 			{
 				projects.items.map((project, index) =>{
 					return (Tile (project))
+				})
+
+			}
+		</div>
+
+		<span className="text-3xl ml-5 sm:ml-10 mt-4">
+			Albums
+		</span>
+		<div className="flex flex-row p-5 gap-5 w-screen overflow-scroll">
+			{
+				albums.items.map((album, index) =>{
+					return (Gallery_tile (album))
 				})
 
 			}
@@ -80,9 +95,11 @@ export default async function Home() {
   );
 }
 
-function Tile (project) {
+async function Tile (project) {
 	const { id, title, description, image, created, updated } = project || {}
-	const img_url = pb.files.getUrl(project, image, {'thumb': '250x500'});
+	const img_url = pb.files.getUrl(project, image, {'thumb': '400x250'});
+	const BlurDataURL = await getBase64(img_url)
+
 	return (
 		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
 		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
@@ -90,9 +107,11 @@ function Tile (project) {
 			{img_url &&
 				<Image
 					src={img_url}
-					width={500}
+					width={400}
 					height={250}
 					quality={95}
+					placeholder = 'blur'
+					blurDataURL = { String(BlurDataURL) }
 					alt={description}
 					className="rounded-xl h-[150px] sm:h-[250px] w-max shadow-md shadow-gray-700 dark:shadow-black"
 				/>
@@ -111,3 +130,37 @@ function Tile (project) {
 }
 
 
+async function  Gallery_tile (album) {
+	const { id, title, description, images, date, created, updated } = album || {}
+	const image = images[Math.floor(Math.random() * images.length)]
+	const img_url = pb.files.getUrl(album, image);
+	const BlurDataURL = await getBase64(img_url)
+
+	return (
+		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
+		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
+		key = {id}>
+			{img_url &&
+				<Image
+					src={img_url}
+					width={600}
+					height={400}
+					quality={95}
+					placeholder = 'blur'
+					blurDataURL = { String(BlurDataURL) }
+					alt={description}
+					className="rounded-xl h-[200px] sm:h-[300px] lg:h-[350px] xl:h-[400px]  w-max shadow-md shadow-gray-700 dark:shadow-black"
+				/>
+			}
+			{
+			!img_url &&
+				<div className = "rounded-xl size-[150px] sm:size-[250px] shadow-md shadow-gray-700 dark:shadow-black dark:bg-gray-800 bg-gray-300 flex items-center">
+					<BiSolidImageAlt className="size-20 dark:text-gray-700 text-gray-400 mx-auto my-auto"/>
+				</div>
+			}
+			<span className="flex flex-row mr-auto text-left">
+				<strong> {title} </strong> <span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
+			</span>
+		</div>
+	)
+}
