@@ -9,6 +9,13 @@ import Image from "next/image";
 import PocketBase from 'pocketbase';
 
 
+ export const dynamic = 'auto',
+   dynamicParams = true,
+   revalidate = 0,
+   fetchCache = 'default-no-store',
+   runtime = 'nodejs',
+   preferredRegion = 'auto'
+
 export default async function Home() {
 
 	const projects = await pb.collection('projects').getList(1, 10, {
