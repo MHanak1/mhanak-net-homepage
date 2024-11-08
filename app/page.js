@@ -1,5 +1,5 @@
 import { TiImage, TiCamera, TiPencil, TiCode } from "react-icons/ti";
-import { BiChevronDown } from "react-icons/bi";
+import { BiChevronDown, BiSolidImageAlt } from "react-icons/bi";
 import { useTheme } from 'next-themes'
 import { pocketbase_url, pb } from '../public/globals'
 import { ThemeChanger } from './UIComponents'
@@ -9,12 +9,11 @@ import Image from "next/image";
 import PocketBase from 'pocketbase';
 
 
- export const dynamic = 'auto',
+
+export const dynamic = 'auto',
    dynamicParams = true,
-   revalidate = 0,
-   fetchCache = 'default-no-store',
-   runtime = 'nodejs',
-   preferredRegion = 'auto'
+   revalidate = 0, //setting this to anything other than 0 causes the build to fail. why? :shrug:
+   fetchCache = 'default-no-store'
 
 export default async function Home() {
 
@@ -67,10 +66,9 @@ export default async function Home() {
 		
 		<div className="flex flex-row p-5 gap-5 w-x overflow-scroll">
 			{
-			projects.items.map((project, index) =>{
-						return (Tile (project))
-					}
-				)
+				projects.items.map((project, index) =>{
+					return (Tile (project))
+				})
 
 			}
 		</div>
@@ -84,19 +82,27 @@ export default async function Home() {
 
 function Tile (project) {
 	const { id, title, description, image, created, updated } = project || {}
-	const img_url = pb.files.getUrl(project, image, {'thumb': '250x250'});
+	const img_url = pb.files.getUrl(project, image, {'thumb': '250x500'});
 	return (
 		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
 		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
 		key = {id}>
-			<Image
-				src={img_url ? img_url : '/noimg.png'}
-				width={500}
-				height={250}
-				quality={95}
-				alt={description}
-				className="rounded-xl h-150 sm:h-[250px] w-max shadow-md shadow-gray-700 dark:shadow-black"
-			/>
+			{img_url &&
+				<Image
+					src={img_url}
+					width={500}
+					height={250}
+					quality={95}
+					alt={description}
+					className="rounded-xl h-[150px] sm:h-[250px] w-max shadow-md shadow-gray-700 dark:shadow-black"
+				/>
+			}
+			{
+			!img_url &&
+				<div className = "rounded-xl size-[150px] sm:size-[250px] shadow-md shadow-gray-700 dark:shadow-black dark:bg-gray-800 bg-gray-300 flex items-center">
+					<BiSolidImageAlt className="size-20 dark:text-gray-700 text-gray-400 mx-auto my-auto"/>
+				</div>
+			}
 			<span className="font-bold mr-auto text-left">
 				{title}
 			</span>
