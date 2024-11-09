@@ -8,6 +8,7 @@ import { Footer } from './PageComponents'
 import Image from "next/image";
 import PocketBase from 'pocketbase';
 import getBase64 from '@/lib/getLocalBase64'
+import Link from 'next/link'
 
 
 
@@ -34,11 +35,11 @@ export default async function Home() {
 				<ThemeChanger/>
 			</div>
 			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2">
-				<a href="/projects">
+				<Link href="/projects">
 					<button className="highlightable hover:text-accent small-button">
 						<TiCode/> <span className="mt-0"> Projects </span>
 					</button>
-				</a>	
+				</Link>	
 				<button className="highlightable hover:text-accent small-button group">
 					<TiImage/> <span className="mt-0"> Gallery </span> <BiChevronDown className="ml-[-4px] animate-flip" />
 					<div className="dropdown self-start dark:text-white text-black border-gray-500 mt-12 ml-[-8px]">
@@ -64,9 +65,9 @@ export default async function Home() {
 
 	<div className="flex flex-col items-start font-[family-name:var(--font-geist-mono)] pt-5">
 
-		<a className="text-3xl ml-5 sm:ml-10 mt-2 hover:text-accent transition-all" href = "/projects">
+		<Link className="text-3xl ml-5 sm:ml-10 mt-2 hover:text-accent transition-all" href = "/projects">
 			Projects
-		</a>
+		</Link>
 		<div className="flex flex-row p-5 gap-5 w-screen overflow-x-scroll">
 			{
 				projects.items.map((project, index) =>{

@@ -22,11 +22,11 @@ export default async function AlbumPage() {
 					</Link>
 				</div>
 				<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2">
-					<a href="/projects">
+					<Link href="/projects">
 						<button className="highlightable hover:text-accent small-button">
 							<TiCode/> <span className="mt-0"> Projects </span>
 						</button>
-					</a>	
+					</Link>	
 					<button className="highlightable hover:text-accent small-button group">
 						<TiImage/> <span className="mt-0"> Gallery </span> <BiChevronDown className="ml-[-4px] animate-flip" />
 						<div className="dropdown self-start dark:text-white text-black border-gray-500 mt-12 ml-[-8px]">
