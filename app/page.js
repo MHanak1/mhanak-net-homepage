@@ -27,7 +27,7 @@ export default async function Home() {
 	});
 
 	return (
-<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center overflow-hidden font-[family-name:var(--font-geist-sans)]">
+<div className="justify-items-center justify-center text-center">
 	<div className="min-h-[800px] w-screen dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
 		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto">
 			<div className="flex flex-row space-x-6 size-min self-end">
@@ -64,9 +64,9 @@ export default async function Home() {
 
 	<div className="flex flex-col items-start font-[family-name:var(--font-geist-mono)] pt-5">
 
-		<span className="text-3xl ml-5 sm:ml-10 mt-2">
+		<a className="text-3xl ml-5 sm:ml-10 mt-2 hover:text-accent transition-all" href = "/projects">
 			Projects
-		</span>
+		</a>
 		<div className="flex flex-row p-5 gap-5 w-screen overflow-x-scroll">
 			{
 				projects.items.map((project, index) =>{
@@ -76,9 +76,9 @@ export default async function Home() {
 			}
 		</div>
 
-		<span className="text-3xl ml-5 sm:ml-10 mt-4">
+		<a className="text-3xl ml-5 sm:ml-10 mt-2 hover:text-accent transition-all" href = "/gallery">
 			Albums
-		</span>
+		</a>
 		<div className="flex flex-row p-5 mb-1 gap-5 w-screen overflow-x-scroll">
 			{
 				albums.items.map((album, index) =>{
@@ -101,9 +101,10 @@ async function Tile (project) {
 	const BlurDataURL = await getBase64(img_url)
 
 	return (
-		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
-		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
-		key = {id}>
+		<a className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all group
+		shadow-gray-500 dark:shadow-black hover:scale-105 dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
+		key = {id}
+		href={"/projects/" + id}>
 			{img_url &&
 				<Image
 					src={img_url}
@@ -122,10 +123,10 @@ async function Tile (project) {
 					<BiSolidImageAlt className="size-20 dark:text-gray-700 text-gray-400 mx-auto my-auto"/>
 				</div>
 			}
-			<span className="font-bold mr-auto text-left">
+			<span className="font-bold mr-auto text-left group-hover:text-accent transition-all">
 				{title}
 			</span>
-		</div>
+		</a>
 	)
 }
 
@@ -137,9 +138,10 @@ async function  Gallery_tile (album) {
 	const BlurDataURL = await getBase64(img_url)
 
 	return (
-		<div className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all
-		shadow-gray-500 dark:shadow-black hover:shadow-accent dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
-		key = {id}>
+		<a className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all group
+		shadow-gray-500 dark:shadow-black hover:scale-[103%] dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
+		key = {id}
+		href={"/gallery/album/" + id}>
 			{img_url &&
 				<Image
 					src={img_url}
@@ -159,8 +161,8 @@ async function  Gallery_tile (album) {
 				</div>
 			}
 			<span className="flex flex-row mr-auto text-left">
-				<strong> {title} </strong> <span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
+				<strong className="transition-all group-hover:text-accent"> {title} </strong> <span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
 			</span>
-		</div>
+		</a>
 	)
 }

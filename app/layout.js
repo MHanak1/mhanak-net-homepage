@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
 	  <head />
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-800 bg-gray-300 dark:text-white text-black overflow-x-hidden font-[family-name:var(--font-geist-sans)]`}>
 	   <ThemeProvider attribute="class"> {children} </ThemeProvider>
       </body>
     </html>
