@@ -2,7 +2,7 @@ import { BsGithub, BsMastodon, BsDiscord} from "react-icons/bs";
 
 export const Footer = () => {
 	return (
-		<footer className="flex sm:flex-row flex-col-reverse justify-between gap-2 dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500 font-[family-name:var(--font-geist-mono)] p-6">
+		<footer className="flex sm:flex-row w-screen flex-col-reverse justify-between gap-2 dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500 font-[family-name:var(--font-geist-mono)] p-6">
 			<div className="flex flex-col gap-1 size-fit items-start mx-0 sm:mx-2">
 				<span className="text-3xl mb-1">
 					Contact

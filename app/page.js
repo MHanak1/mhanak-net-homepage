@@ -27,8 +27,8 @@ export default async function Home() {
 	});
 
 	return (
-<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center font-[family-name:var(--font-geist-sans)]">
-	<div className="min-h-[800px] dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
+<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black justify-items-center justify-center text-center overflow-hidden font-[family-name:var(--font-geist-sans)]">
+	<div className="min-h-[800px] w-screen dark:bg-gray-900 bg-gray-200 shadow-md dark:shadow-black shadow-gray-500">
 		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto">
 			<div className="flex flex-row space-x-6 size-min self-end">
 				<ThemeChanger/>
@@ -67,7 +67,7 @@ export default async function Home() {
 		<span className="text-3xl ml-5 sm:ml-10 mt-2">
 			Projects
 		</span>
-		<div className="flex flex-row p-5 gap-5 w-screen overflow-scroll">
+		<div className="flex flex-row p-5 gap-5 w-screen overflow-x-scroll">
 			{
 				projects.items.map((project, index) =>{
 					return (Tile (project))
@@ -79,7 +79,7 @@ export default async function Home() {
 		<span className="text-3xl ml-5 sm:ml-10 mt-4">
 			Albums
 		</span>
-		<div className="flex flex-row p-5 gap-5 w-screen overflow-scroll">
+		<div className="flex flex-row p-5 mb-1 gap-5 w-screen overflow-x-scroll">
 			{
 				albums.items.map((album, index) =>{
 					return (Gallery_tile (album))

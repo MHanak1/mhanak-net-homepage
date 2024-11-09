@@ -12,9 +12,11 @@ export default async function AlbumPage() {
 
 	//return (<div> hello </div>)
 	return( 
-		<>
+		<div className="dark:bg-gray-800 bg-gray-300 dark:text-white text-black overflow-hidden">
 
-		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto font-[family-name:var(--font-geist-sans)]">
+		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center it
+
+This won't work for the red links, because the selectors inside :is() cems-center mx-auto font-[family-name:var(--font-geist-sans)]">
 			<div className="flex flex-row space-x-6 size-min self-end">
 				<Link href="/">
 					<button className="dark:bg-white dark:text-black hover:bg-accent bg-black text-white small-button">
@@ -45,6 +47,6 @@ export default async function AlbumPage() {
 
 		<AlbumList initialAlbums={albums} />
 		<Footer />
-	</>
+	</div>
 	)
 }

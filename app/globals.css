@@ -14,6 +14,22 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track{
+	@apply bg-gray-300 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-xl m-2 bg-gray-400 dark:bg-gray-900 hover:bg-accent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
