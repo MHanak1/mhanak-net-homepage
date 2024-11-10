@@ -31,7 +31,7 @@ export default function AlbumList({ initialAlbums }) {
 
 	return(
 		<>
-		<div className="flex flex-col sm:pl-5 py-5 gap-5 w-screen overflow-scroll">
+		<div className="flex flex-col sm:pl-5 pb-5 w-screen overflow-scroll">
 			{
 				albums.map((album, index) =>{
 					return (Gallery_list (album))
