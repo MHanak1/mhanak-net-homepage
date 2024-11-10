@@ -8,7 +8,7 @@ export const ThemeChanger = () => {
 
   return (
 	<button onClick={() => theme == "dark"? setTheme('light'): setTheme("dark")}>
-	  <div className="highlightable rounded-full flex size-10 justify-center items-center ml-0  hover:text-yellow-500">
+	  <div className="highlightable rounded-full flex size-10 justify-center items-center hover:text-yellow-500">
 		  <BsSunFill className="dark:hidden inline"/>
 		  <BsMoonStarsFill className="dark:inline hidden"/>
 	  </div>

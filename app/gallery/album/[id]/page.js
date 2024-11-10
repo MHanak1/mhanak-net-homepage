@@ -4,6 +4,11 @@ import { Footer, Navbar } from '@/app/PageComponents'
 import Gallery_image from '@/app/gallery/GalleryImage'
 import { TiArrowLeft } from "react-icons/ti";
 
+export const dynamic = 'auto',
+   dynamicParams = true,
+   revalidate = 0, //setting this to anything other than 0 causes the build to fail. why? :shrug:
+   fetchCache = 'default-no-store'
+
 export default async function AlbumPage({params}){
 	/*
 	return (<div className="flex flex-col items-center p-32">

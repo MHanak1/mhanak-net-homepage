@@ -1,6 +1,7 @@
 import { BsGithub, BsMastodon, BsDiscord} from "react-icons/bs";
 import { TiCamera, TiImage, TiPencil, TiCode } from "react-icons/ti";
 import { BiChevronDown, BiSolidImageAlt, BiLandscape } from "react-icons/bi";
+import { TiHome } from "react-icons/ti";
 import Link from 'next/link'
 
 export const Navbar = () => {
@@ -8,9 +9,9 @@ export const Navbar = () => {
 		<div className="grid grid-cols-3 max-w-[2000px] p-4 justify-center items-center mx-auto">
 			<div className="flex flex-row space-x-6 size-min self-end">
 				<Link href="/">
-					<button className="dark:bg-white dark:text-black hover:bg-accent bg-black text-white small-button">
-						Home
-					</button>
+					  <div className="highlightable rounded-full flex size-10 justify-center items-center ml-0  hover:text-accent">
+						  <TiHome className="size-5"/>
+					  </div>
 				</Link>
 			</div>
 			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2">

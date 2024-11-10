@@ -42,7 +42,7 @@ body {
 	}
 
 	.highlightable {
-		@apply dark:hover:bg-gray-800 hover:bg-gray-300;
+		@apply dark:hover:bg-black/20 hover:bg-black/10;
 	}
 
 	.dropdown {
