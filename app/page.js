@@ -10,8 +10,6 @@ import PocketBase from 'pocketbase';
 import getBase64 from '@/lib/getLocalBase64'
 import Link from 'next/link'
 
-
-
 export const dynamic = 'auto',
    dynamicParams = true,
    revalidate = 0, //setting this to anything other than 0 causes the build to fail. why? :shrug:

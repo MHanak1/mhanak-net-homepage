@@ -3,11 +3,28 @@ import { pb } from '@/public/globals.js'
 import { Footer, Navbar } from '@/app/PageComponents'
 import Gallery_image from '@/app/gallery/GalleryImage'
 import { TiArrowLeft } from "react-icons/ti";
+import Head from 'next/head'
 
 export const dynamic = 'auto',
    dynamicParams = true,
    revalidate = 0, //setting this to anything other than 0 causes the build to fail. why? :shrug:
    fetchCache = 'default-no-store'
+
+export async function generateMetadata({ params }) {
+	const album = 
+		await pb.collection('albums').getOne(await params.id, {
+			fields: 'title, date',
+			requestKey: "getTitle"
+		});
+
+	const { id, title, description, images, date, created, updated } = album || {}
+
+	return {
+		title: `${title} ${parseInt(date)} Album - MHanak.net`,
+		description: description,
+	};
+}
+
 
 export default async function AlbumPage({params}){
 	/*
@@ -24,12 +41,17 @@ export default async function AlbumPage({params}){
 
 	const album = 
 		await pb.collection('albums').getOne(params.id, {
-			
+			requestKey: "getContents"
 		});
 	const { id, title, description, images, date, created, updated } = album || {}
 	
 	return (
 		<>
+			<Head>
+				<title>{title} {parseInt(date)} Album - MHanak.net</title>
+				<meta name='description' content={description} />
+			</Head>
+
 			<Navbar />
 
 			<div className="px-5 sm:px-10 flex flex-col gap-2 sm:gap-5 sm:mt-1 mb-4"> 

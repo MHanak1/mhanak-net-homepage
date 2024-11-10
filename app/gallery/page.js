@@ -7,6 +7,10 @@ export const dynamic = 'auto',
    revalidate = 0, //setting this to anything other than 0 causes the build to fail. why? :shrug:
    fetchCache = 'default-no-store'
 
+export const metadata = {
+  title: 'Gallery - MHanak.net'
+}
+
 export default async function AlbumPage() {
 
 	const albums = await pb.collection('albums').getList(1, POSTS_PER_PAGE, {

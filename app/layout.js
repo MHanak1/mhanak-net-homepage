@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "MHanak\'s website",
+  title: "Home - MHanak.net",
   description: "A place for me to showcase all the various projects",
 };
 
