@@ -15,6 +15,7 @@ export default async function AlbumPage({params}){
 		</Link>
 	</div>)*/
 
+	await params;
 
 	const album = 
 		await pb.collection('albums').getOne(params.id, {
@@ -26,16 +27,20 @@ export default async function AlbumPage({params}){
 		<>
 			<Navbar />
 
-			<div className="px-2"> 
-				<Link href = "/gallery" className="flex flex-row items-center py-2 px-10 text-xl dark:text-gray-400 text-gray-600 hover:text-accent">
+			<div className="px-5 sm:px-10 flex flex-col gap-2 sm:gap-5 sm:mt-1 mb-4"> 
+				<Link href="/gallery" className="flex flex-row items-center sm:mx-2 sm:text-2xl dark:text-gray-400 text-gray-600 hover:text-accent">
 					<TiArrowLeft /> Go back to the gallery
 				</Link>
 
-				<div className="text-3xl sm:text-5xl sm:ml-5 ml-2 mb-2 size-fit">
-					<strong> {title} </strong> <span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
+				<div className="text-3xl sm:text-5xl size-fit flex flex-row">
+					<strong>{title}</strong><span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
+				</div>
+
+				<div className="sm:text-2xl dark:text-gray-300 text-gray-700 ">
+					{description}
 				</div>
 				
-				<div className = "grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-5 p-2 sm:p-5">
+				<div className = "grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-5 my-2">
 					{
 						images.map((image) => {
 							const img_url = pb.files.getUrl(album, image);

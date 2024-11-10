@@ -8,7 +8,7 @@ export default function Gallery_list (album) {
 
 	return (
 		<div className="flex flex-col" key = {id}>
-			<Link className="text-3xl ml-5 sm:ml-10 mt-4 group size-fit" href = {"/gallery/album/" + id}>
+			<Link className="text-3xl ml-5 sm:ml-10 mt-4 group size-fit flex flex-row" href = {"/gallery/album/" + id}>
 				<strong className="transition-all group-hover:text-accent"> {title} </strong> <span className="dark:text-gray-400 text-gray-600"> {", " + parseInt(date)} </span>
 			</Link>
 			<div className="flex flex-row gap-5 overflow-x-scroll overflow-y-visible p-5">
