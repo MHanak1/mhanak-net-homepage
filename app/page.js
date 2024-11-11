@@ -1,5 +1,7 @@
 import { TiImage, TiCamera, TiPencil, TiCode } from "react-icons/ti";
+import { BsGit } from "react-icons/bs";
 import { BiChevronDown, BiSolidImageAlt, BiLandscape } from "react-icons/bi";
+import { AiOutlineLink } from "react-icons/ai";
 import { useTheme } from 'next-themes'
 import { pocketbase_url, pb } from '../public/globals'
 import { ThemeChanger } from './UIComponents'
@@ -95,15 +97,14 @@ export default async function Home() {
 }
 
 async function Tile (project) {
-	const { id, title, description, image, created, updated } = project || {}
-	const img_url = pb.files.getUrl(project, image, {'thumb': '400x250'});
+	const { id, title, description, image, repository, link, created, updated } = project || {}
+	const img_url = pb.files.getUrl(project, image, {'thumb': '400x400'});
 	const BlurDataURL = await getBase64(img_url)
 
 	return (
-		<a className="flex flex-col min-w-fit h-fit items-center p-4 space-y-4 rounded-xl shadow-lg transition-all group
+		<div className="flex flex-col min-w-fit h-fit items-center pb-2 p-4 space-y-2 rounded-xl shadow-lg transition-all group
 		shadow-gray-500 dark:shadow-black hover:scale-105 dark:bg-gray-900 bg-gray-200 font-[family-name:var(--font-geist-mono)]"
-		key = {id}
-		href={"/projects/" + id}>
+		key = {id}>
 			{img_url &&
 				<Image
 					src={img_url}
@@ -122,10 +123,24 @@ async function Tile (project) {
 					<BiSolidImageAlt className="size-20 dark:text-gray-700 text-gray-400 mx-auto my-auto"/>
 				</div>
 			}
-			<span className="font-bold mr-auto text-left group-hover:text-accent transition-all">
-				{title}
-			</span>
-		</a>
+			<div className="size-full flex content-between flex-row items-center flex-wrap gap-2">
+				<span className="font-bold mr-auto text-left transition-all m-2">
+					{title}
+				</span>
+				<div className="flex flex-row">
+					{link && 
+						<a href={link} className="highlightable rounded-full flex h-10 px-3 gap-2 justify-center items-center hover:text-accent">
+						    <AiOutlineLink className="size-5"/> <span className="hidden sm:inline-block"> Page </span>
+						</a>
+					}
+					{repository && 
+						<a href={repository} className="highlightable rounded-full flex h-10 px-3 gap-2 justify-center items-center hover:text-accent">
+						    <BsGit className="size-5"/> <span className="hidden sm:inline-block"> Git </span>
+						</a>
+					}
+				</div>
+			</div>
+		</div>
 	)
 }
 
