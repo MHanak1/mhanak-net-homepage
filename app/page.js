@@ -20,7 +20,7 @@ export const dynamic = 'auto',
 export default async function Home() {
 
 	const projects = await pb.collection('projects').getList(1, 10, {
-		sort: '-created, title',
+		sort: '-date, title',
 	});
 
 	const albums = await pb.collection('albums').getList(1, 10, {
