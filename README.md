@@ -1,4 +1,4 @@
-This is a a repository of version 2 of my personal website created in [Next.js](https://nextjs.org)
+This is a a repository of version 2 of my personal website created in [Next.js](https://nextjs.org). It ises [Pocketbase](https://pocketbase.io/) as it's backend. The site features the homepage (duh) a gallery and a list of my projects some may be interested in.
 
 ## Hosting it yourself
 
