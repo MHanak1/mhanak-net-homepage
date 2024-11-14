@@ -11,13 +11,15 @@ export const dynamic = 'auto',
    fetchCache = 'default-no-store'
 
 export async function generateMetadata({ params }) {
+	const { id } = await params
+
 	const album = 
-		await pb.collection('albums').getOne(await params.id, {
+		await pb.collection('albums').getOne(id, {
 			fields: 'title, date',
 			requestKey: "getTitle"
 		});
 
-	const { id, title, description, images, date, created, updated } = album || {}
+	const { title, description, images, date, created, updated } = album || {}
 
 	return {
 		title: `${title} ${parseInt(date)} Album - MHanak.net`,
@@ -37,13 +39,16 @@ export default async function AlbumPage({params}){
 		</Link>
 	</div>)*/
 
-	await params;
+	const { id } = await params
 
 	const album = 
-		await pb.collection('albums').getOne(params.id, {
+		await pb.collection('albums').getOne(id, {
 			requestKey: "getContents"
 		});
-	const { id, title, description, images, date, created, updated } = album || {}
+
+	console.log (album)
+
+	const { title, description, images, date, created, updated } = album || {}
 	
 	return (
 		<>
