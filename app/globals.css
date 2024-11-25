@@ -15,8 +15,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track{
@@ -24,7 +24,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-xl m-2 bg-gray-400 dark:bg-gray-900 hover:bg-accent;
+  @apply rounded-xl m-2 bg-gray-600 dark:bg-gray-400 hover:bg-accent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
