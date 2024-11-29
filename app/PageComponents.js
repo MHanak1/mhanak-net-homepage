@@ -50,6 +50,15 @@ export const Footer = () => {
 				<a href="https://github.com/MHanak1/mhanak-net-homepage" className="hover:text-accent">
 					View this page&apos;s source
 				</a>
+				 <p xmlnscc="http://creativecommons.org/ns#" xmlnsdct="http://purl.org/dc/terms/" className="flex flex-row gap-2 text-sm">
+					<span property="dct:title">MHanak.net</span> © 2024 by <span property="cc:attributionName">Michał Hanak</span> is licensed under
+					<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" className="flex flex-row hover:text-accent">CC BY-NC-SA 4.0 
+						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="" />
+						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="" />
+						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="" />
+						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="" />
+					</a>
+				</p>
 			</div>
 			<div className="flex flex-col size-fit sm:items-end items-start mx-0 sm:mx-2">
 				<span className="text-3xl mb-2">
@@ -58,19 +67,19 @@ export const Footer = () => {
 				<div className="grid gap-2 grid-cols-3 justify-end">
 					<a 
 						className="highlightable rounded-full size-12 flex justify-center items-center
-						text-gray-700 hover:text-accent"
+						text-gray-600 hover:text-accent"
 						href='https://github.com/MHanak1'>
 						<BsGithub className="size-8"/>
 					</a>
 					<a 
 						className="highlightable rounded-full flex size-12 justify-center items-center
-						text-gray-700 hover:text-accent"
+						text-gray-600 hover:text-accent"
 						href='https://mastodon.social/@mhanak'>
 						<BsMastodon className="size-8"/>
 					</a>
 					<a 
 						className="highlightable rounded-full flex size-12 justify-center items-center
-						text-gray-700 hover:text-accent"
+						text-gray-600 hover:text-accent"
 						href='https://discordapp.com/users/765559340081872906'>
 						<BsDiscord className="size-8" />
 					</a>
