@@ -46,7 +46,7 @@ export default async function AlbumPage({params}){
 			requestKey: "getContents"
 		});
 
-	console.log (album)
+	//console.log (album)
 
 	const { title, description, images, date, created, updated } = album || {}
 	

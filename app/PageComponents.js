@@ -1,6 +1,7 @@
 import { BsGithub, BsMastodon, BsDiscord} from "react-icons/bs";
 import { TiCamera, TiImage, TiPencil, TiCode } from "react-icons/ti";
 import { BiChevronDown, BiSolidImageAlt, BiLandscape } from "react-icons/bi";
+import { FaCreativeCommons, FaCreativeCommonsBy, FaCreativeCommonsNc, FaCreativeCommonsSa } from "react-icons/fa6";
 import { TiHome } from "react-icons/ti";
 import Link from 'next/link'
 
@@ -50,15 +51,19 @@ export const Footer = () => {
 				<a href="https://github.com/MHanak1/mhanak-net-homepage" className="hover:text-accent">
 					View this page&apos;s source
 				</a>
-				 <p xmlnscc="http://creativecommons.org/ns#" xmlnsdct="http://purl.org/dc/terms/" className="flex flex-row gap-2 text-sm">
-					<span property="dct:title">MHanak.net</span> © 2024 by <span property="cc:attributionName">Michał Hanak</span> is licensed under
-					<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" className="flex flex-row hover:text-accent">CC BY-NC-SA 4.0 
-						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="" />
-						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="" />
-						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="" />
-						<img className="h-[22px] ml-[4px] align-text-bottom" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="" />
-					</a>
-				</p>
+				<div xmlnscc="http://creativecommons.org/ns#" xmlnsdct="http://purl.org/dc/terms/" className="flex sn:flex-row flex-col gap-1 mt-1 text-xs sm:text-sm text-gray-500 items-start">
+					<div>
+						<span property="dct:title">MHanak.net</span> © 2024 by <span property="cc:attributionName">Michał Hanak</span>
+					</div>
+					<div>
+						<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" className="flex flex-row hover:text-accent items-center">CC BY-NC-SA 4.0 
+							<FaCreativeCommons   className="ml-[4px]"/>
+							<FaCreativeCommonsBy className="ml-[4px]"/>
+							<FaCreativeCommonsNc className="ml-[4px]"/>
+							<FaCreativeCommonsSa className="ml-[4px]"/>
+						</a>
+					</div>
+				</div>
 			</div>
 			<div className="flex flex-col size-fit sm:items-end items-start mx-0 sm:mx-2">
 				<span className="text-3xl mb-2">
