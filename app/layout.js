@@ -14,8 +14,12 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Home - MHanak.net",
-  description: "A place for me to showcase all the various projects",
+  title: {
+    template: "%s | MHanak.net",
+    default: "MHanak.net",
+  },
+  description: "The personal website of Michał Hanak. It is place for me to showcase all my various projects",
+  authors: {name: "Michał Hanak"},
 };
 
 export default function RootLayout({ children }) {
