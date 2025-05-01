@@ -35,6 +35,7 @@ export default async function Home() {
 				<ThemeChanger/>
 			</div>
 			<div className="flex flex-row iitems-center justify-center sm:space-x-6 space-x-2">
+			<a className="hidden" href="/images"> Images </a>
 				<Link href="/projects">
 					<button className="highlightable hover:text-accent small-button">
 						<TiCode/> <span className="mt-0"> Projects </span>
