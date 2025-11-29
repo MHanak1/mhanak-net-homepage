@@ -45,8 +45,8 @@ export const Footer = () => {
 				<span className="text-3xl mb-1">
 					Contact
 				</span>
-				<a href="mailto:michal.hanak@lo5.wroclaw.pl" className="hover:text-accent">
-					michal.hanak@lo5.wroclaw.pl
+				<a href="mailto:mhanak30@proton.me" className="hover:text-accent">
+					mhanak30@proton.me
 				</a>
 				<a href="https://github.com/MHanak1/mhanak-net-homepage" className="hover:text-accent">
 					View this page&apos;s source
